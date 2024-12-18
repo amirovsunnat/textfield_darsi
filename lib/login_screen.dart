@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:textfield_darsi/home_screen.dart';
+import 'package:textfield_darsi/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -117,21 +118,44 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             SizedBox(height: 50),
-            ElevatedButton(
-              onPressed: () {
-                log("Name value: ${nameController.text}");
-                log("Password value: ${passswordController.text}");
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(
-                      name: nameController.text,
-                      password: passswordController.text,
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(double.infinity, 50),
+                ),
+                onPressed: () {
+                  log("Name value: ${nameController.text}");
+                  log("Password value: ${passswordController.text}");
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(
+                        name: nameController.text,
+                        password: passswordController.text,
+                      ),
                     ),
+                  );
+                },
+                child: Text("Login"),
+              ),
+            ),
+            GestureDetector(
+              onTap: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SignUpScreen(),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Center(
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    "Don't have an account? Sign Up",
                   ),
-                );
-              },
-              child: Text("Login"),
+                ),
+              ),
             ),
           ],
         ),
